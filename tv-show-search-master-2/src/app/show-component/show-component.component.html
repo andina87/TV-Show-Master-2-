@@ -1,0 +1,66 @@
+<!--<p>show-component works!</p>-->
+<div class="row show-details-container" *ngIf="show.id">
+    <div class="col-sm-4">
+        <div class="card">
+            <img class="card-img img-fluid" style="height: 28rem;" [src]='show.img' alt="" />
+        </div>
+    </div>
+    <div class="col-sm-8">
+        <div class="card text-white content">
+            <div class="card-body">
+                <h1 class="card-title">{{show.title}}</h1>
+                <p class="card-text" [innerHTML]=show.summary></p>
+                <div wrapper-box>
+
+                    <div class="show-details">
+                        <label class="cast-label">Starring</label>
+                        <span>{{show.cast1}} {{show.cast2}} {{show.cast3}}</span>
+                    </div>
+
+                    <div class="show-details">
+                        <label class='genre-label'>Genre </label>
+                        <span>{{show.genres}}</span>
+                    </div>
+                    <div class="show-details">
+                        <label class="language-label">Language </label>
+                        <span>{{show.language}}</span>
+                    </div>
+                    
+                    <div class="show-details">
+                        <label class="premeried-label">Premeried </label>
+                        <span>{{show.premiered | date: 'mediumDate'}}</span>
+                    </div>
+
+                    <div class="show-details">
+                        <label class="ended-label">Ended </label>
+                        <span>{{show.ended | date: 'mediumDate'}}</span>
+                    </div>
+                    
+                    <div class="show-details">
+                        <label class="rating-label">Rating </label>
+                        <span>{{show.rating}}</span>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        <ng-container *ngIf='show.seasons.length > 0'>
+            <div class="dropdown-box form-group">
+                <form>
+                    <select name="Seasons" id="seasonsbox" class="seasonsbox" (change)='seasonHandler($event)'>
+                        <option>Seasons</option>
+                        <option *ngFor="let season of show.seasons" [value]="season.id"> Season{{season.number}} </option>
+        
+                    </select>
+        
+        
+                </form>
+            </div>
+        </ng-container>
+    </div>
+ 
+</div>
+<div *ngIf="!show.id">
+   
+</div>
